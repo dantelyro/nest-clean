@@ -11,9 +11,9 @@ const createQuestionBodySchema = z.object({
   content: z.string(),
 });
 
-type CreateQuestionBodySchema = z.infer<typeof createQuestionBodySchema>;
-
 const bodyValidationPipe = new ZodValidationPipe(createQuestionBodySchema);
+
+type CreateQuestionBodySchema = z.infer<typeof createQuestionBodySchema>;
 
 @Controller('/questions')
 @UseGuards(JwtAuthGuard)
