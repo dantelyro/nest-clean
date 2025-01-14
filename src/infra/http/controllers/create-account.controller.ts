@@ -1,5 +1,5 @@
+import { PrismaServise } from '@/infra/database/prisma/prisma.service';
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe';
-import { PrismaServise } from '@/infra/prisma/prisma.service';
 import {
   Body,
   ConflictException,
