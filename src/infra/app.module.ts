@@ -1,4 +1,4 @@
-import { envSchema } from '@/env';
+import { envSchema } from '@/infra/env';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
