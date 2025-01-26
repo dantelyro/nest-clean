@@ -1,6 +1,8 @@
 import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases/authenticate-student';
+import { WrongCredentialError } from '@/domain/forum/application/use-cases/errors/wrong-credentials-error';
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe';
 import {
+  BadRequestException,
   Body,
   Controller,
   Post,
@@ -29,7 +31,14 @@ export class AuthenticateController {
     });
 
     if (result.isLeft()) {
-      throw new UnauthorizedException('Invalid credentials');
+      const error = result.value;
+
+      switch (error.constructor) {
+        case WrongCredentialError:
+          throw new UnauthorizedException(error.message);
+        default:
+          throw new BadRequestException(error.message);
+      }
     }
 
     const { accessToken } = result.value;
