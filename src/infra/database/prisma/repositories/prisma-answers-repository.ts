@@ -2,12 +2,12 @@ import { PaginationParams } from '@/core/repositories/pagination-params';
 import { AnswersRepository } from '@/domain/forum/application/repositories/answers-repository';
 import { Answer } from '@/domain/forum/enterprise/entities/answer';
 import { Injectable } from '@nestjs/common';
-import { PrismaServise } from '../prisma.service';
+import { PrismaService } from '../prisma.service';
 import { PrismaAnswerMapper } from '../mappers/prisma-answer-mapper';
 
 @Injectable()
 export class PrismaAnswersRepository implements AnswersRepository {
-  constructor(private prisma: PrismaServise) {}
+  constructor(private prisma: PrismaService) {}
 
   async findById(id: string): Promise<Answer | undefined> {
     const answer = await this.prisma.answer.findUnique({

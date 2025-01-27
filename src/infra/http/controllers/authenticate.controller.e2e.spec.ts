@@ -1,5 +1,5 @@
 import { AppModule } from '@/infra/app.module';
-import { PrismaServise } from '@/infra/database/prisma/prisma.service';
+import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { hash } from 'bcryptjs';
@@ -7,7 +7,7 @@ import request from 'supertest';
 
 describe('Authenticate (E2E)', () => {
   let app: INestApplication;
-  let prisma: PrismaServise;
+  let prisma: PrismaService;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -15,7 +15,7 @@ describe('Authenticate (E2E)', () => {
     }).compile();
 
     app = moduleRef.createNestApplication();
-    prisma = moduleRef.get(PrismaServise);
+    prisma = moduleRef.get(PrismaService);
 
     await app.init();
   });

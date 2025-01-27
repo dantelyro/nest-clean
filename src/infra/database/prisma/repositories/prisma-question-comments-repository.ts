@@ -2,14 +2,14 @@ import { PaginationParams } from '@/core/repositories/pagination-params';
 import { QuestionCommentsRepository } from '@/domain/forum/application/repositories/question-comments-repository';
 import { QuestionComment } from '@/domain/forum/enterprise/entities/question-comment';
 import { Injectable } from '@nestjs/common';
-import { PrismaServise } from '../prisma.service';
+import { PrismaService } from '../prisma.service';
 import { PrismaQuestionCommentMapper } from '../mappers/prisma-question-comment-mapper';
 
 @Injectable()
 export class PrismaQuestionCommentsRepository
   implements QuestionCommentsRepository
 {
-  constructor(private prisma: PrismaServise) {}
+  constructor(private prisma: PrismaService) {}
 
   async findById(id: string): Promise<QuestionComment | undefined> {
     const questionComment = await this.prisma.comment.findUnique({

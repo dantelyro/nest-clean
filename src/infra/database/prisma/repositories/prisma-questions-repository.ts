@@ -3,11 +3,11 @@ import { QuestionsRepository } from '@/domain/forum/application/repositories/que
 import { Question } from '@/domain/forum/enterprise/entities/question';
 import { Injectable } from '@nestjs/common';
 import { PrismaQuestionMapper } from '../mappers/prisma-question-mapper';
-import { PrismaServise } from '../prisma.service';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class PrismaQuestionsRepository implements QuestionsRepository {
-  constructor(private prisma: PrismaServise) {}
+  constructor(private prisma: PrismaService) {}
 
   async findById(id: string): Promise<Question | undefined> {
     const question = await this.prisma.question.findUnique({

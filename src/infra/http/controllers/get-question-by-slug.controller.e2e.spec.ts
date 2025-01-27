@@ -1,5 +1,5 @@
 import { AppModule } from '@/infra/app.module';
-import { PrismaServise } from '@/infra/database/prisma/prisma.service';
+import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { INestApplication } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Test } from '@nestjs/testing';
@@ -7,7 +7,7 @@ import request from 'supertest';
 
 describe('Get Questions by slug (E2E)', () => {
   let app: INestApplication;
-  let prisma: PrismaServise;
+  let prisma: PrismaService;
   let jwt: JwtService;
 
   beforeAll(async () => {
@@ -16,7 +16,7 @@ describe('Get Questions by slug (E2E)', () => {
     }).compile();
 
     app = moduleRef.createNestApplication();
-    prisma = moduleRef.get(PrismaServise);
+    prisma = moduleRef.get(PrismaService);
     jwt = moduleRef.get(JwtService);
 
     await app.init();
