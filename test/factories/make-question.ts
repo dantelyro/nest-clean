@@ -30,9 +30,9 @@ export class QuestionFactory {
   constructor(private prisma: PrismaService) {}
 
   async makePrismaQuestion(
-    override: Partial<QuestionProps> = {},
+    data: Partial<QuestionProps> = {},
   ): Promise<Question> {
-    const question = makeQuestion(override);
+    const question = makeQuestion(data);
 
     await this.prisma.question.create({
       data: PrismaQuestionMapper.toPrisma(question),
