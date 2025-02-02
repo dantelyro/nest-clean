@@ -41,6 +41,7 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 .env.local
+.env.test
 public_key.pem
 private_key.pem
 
