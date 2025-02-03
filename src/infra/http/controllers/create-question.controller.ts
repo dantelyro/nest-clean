@@ -8,6 +8,7 @@ import z from 'zod';
 const createQuestionBodySchema = z.object({
   title: z.string(),
   content: z.string(),
+  attachments: z.array(z.string().uuid()),
 });
 
 const bodyValidationPipe = new ZodValidationPipe(createQuestionBodySchema);
@@ -23,12 +24,12 @@ export class CreateQuestionController {
     @Body(bodyValidationPipe) body: CreateQuestionBodySchema,
     @CurrentUser() user: UserPayload,
   ) {
-    const { content, title } = body;
+    const { content, title, attachments } = body;
     const userId = user.sub;
 
     const result = await this.createQuestion.execute({
       authorId: userId,
-      attachmentsIds: [],
+      attachmentsIds: attachments,
       content,
       title,
     });

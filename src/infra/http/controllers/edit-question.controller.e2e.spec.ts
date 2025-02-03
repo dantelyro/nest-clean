@@ -52,8 +52,6 @@ describe('Edit question (E2E)', () => {
 
     expect(response.statusCode).toBe(204);
 
-    console.log(response.body);
-
     const questionOnDatabase = await prisma.question.findFirst({
       where: {
         title: 'New title',
