@@ -35,8 +35,8 @@ describe('Create Account (E2E)', () => {
 
     const accessToken = jwt.sign({ sub: user.id.toString() });
 
-    const attachment1 = await attachmentFactory.makePrismaQuestionComment();
-    const attachment2 = await attachmentFactory.makePrismaQuestionComment();
+    const attachment1 = await attachmentFactory.makePrismaAttachment();
+    const attachment2 = await attachmentFactory.makePrismaAttachment();
 
     const response = await request(app.getHttpServer())
       .post('/questions')
@@ -57,12 +57,12 @@ describe('Create Account (E2E)', () => {
 
     expect(question).toBeTruthy();
 
-    const attachments = await prisma.attachment.findMany({
+    const attachmentsOnDataBase = await prisma.attachment.findMany({
       where: {
         questionId: question?.id,
       },
     });
 
-    expect(attachments).toHaveLength(2);
+    expect(attachmentsOnDataBase).toHaveLength(2);
   });
 });
