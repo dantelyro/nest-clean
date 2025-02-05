@@ -69,7 +69,10 @@ describe('Fetch question comments (E2E)', () => {
           content: 'Comment 01',
           authorName: 'John Doe',
         }),
-        expect.objectContaining({ content: 'Comment 01' }),
+        expect.objectContaining({
+          content: 'Comment 02',
+          authorName: 'John Doe',
+        }),
       ]),
     });
   });
