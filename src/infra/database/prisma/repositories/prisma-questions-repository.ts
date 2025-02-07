@@ -119,7 +119,7 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
       this.questionAttachmentsRepository.deleteMany(
         question.attachments.getRemovedItems(),
       ),
-      this.cache.delelte(`question:${question.slug}:details`),
+      this.cache.delete(`question:${question.slug.value}:details`),
     ]);
 
     DomainEvents.dispatchEventsForAggregate(question.id);
