@@ -12,9 +12,9 @@ import {
   SendNotificationUseCaseRequest,
   SendNotificationUseCaseResponse,
 } from '../use-cases/send-notification';
-import { OnAnswerCreated } from './on-answer-created';
 import { InMemoryAttachmentsRepository } from 'test/repositories/in-memory-attachments-repository';
 import { InMemoryStudentsRepository } from 'test/repositories/in-memory-students-repository';
+import { OnQuestionBestAnswerChosen } from './on-question-best-answer-chosen';
 
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
@@ -58,8 +58,10 @@ describe('On Question best answer chosen', () => {
 
     sendNotificationExecuteSpy = vi.spyOn(sendNotificationUseCase, 'execute');
 
-    // eslint-disable-next-line no-new
-    new OnAnswerCreated(inMemoryQuestionsRepository, sendNotificationUseCase);
+    new OnQuestionBestAnswerChosen(
+      inMemoryAnswersRepository,
+      sendNotificationUseCase,
+    );
   });
 
   it('should send a notification when question has new best answer chosen', async () => {

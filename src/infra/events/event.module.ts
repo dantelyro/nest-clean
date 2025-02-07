@@ -1,5 +1,5 @@
 import { OnAnswerCreated } from '@/domain/notification/application/subscribers/on-answer-created';
-import { OnBestQuestionAnswerChosen } from '@/domain/notification/application/subscribers/on-question-best-answer-chosen';
+import { OnQuestionBestAnswerChosen } from '@/domain/notification/application/subscribers/on-question-best-answer-chosen';
 import { SendNotificationUseCase } from '@/domain/notification/application/use-cases/send-notification';
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.module';
@@ -8,7 +8,7 @@ import { DatabaseModule } from '../database/database.module';
   imports: [DatabaseModule],
   providers: [
     OnAnswerCreated,
-    OnBestQuestionAnswerChosen,
+    OnQuestionBestAnswerChosen,
     SendNotificationUseCase,
   ],
 })
